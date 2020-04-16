@@ -2,9 +2,9 @@
     .wrapper-header
         .hero.container
             span.bold C
-            span areer
+            span.light areer
             span.bold B
-            span ook
+            span.light ook
 </template>
 
 <script>
@@ -24,13 +24,17 @@
     }
 
     .hero {
-        @include fs(16)
+        @include fs(18)
         padding-top: 15px;
         padding-bottom: 15px;
         @include color($white)
         letter-spacing: .15em;
         .bold {
-            font-weight: 500;
+            @include weight(500)
+        }
+
+        .light {
+            @include weight(300)
         }
     }
 </style>

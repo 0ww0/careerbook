@@ -1,11 +1,11 @@
 <template lang="pug">
-    .banner-holder
+    .core-holder
         .container
             card(:xmedia = 'false')
+                cardWrapper(:card = 'isResponsive', :order= 'order')
+                    heading(:heading = 'core.heading')
                 cardWrapper(:card = 'isResponsive')
-                    heading(:heading = 'banner.heading')
-                cardWrapper(:card = 'isResponsive')
-                    videoBanner(:video = 'banner.video')
+                    videoBanner(:video = 'core.video')
 </template>
 
 <script>
@@ -19,7 +19,7 @@
         extends : Media,
 
         props : {
-            banner : Object
+            core : Object
         },
 
         components : {
@@ -36,20 +36,24 @@
                 } else {
                     return 'full'
                 }
+            },
+
+            order : function() {
+                return this.is1025 ? 2 : 0
             }
         },
     }
 </script>
 
 <style lang="scss" scoped>
-    .banner-holder {
+    .core-holder {
         background: rgb(34,193,195);
-        background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(68,129,173,1) 100%);
+        background: linear-gradient(180deg, rgba(34,193,195,1) 0%, rgba(68,129,173,1) 100%);
         padding-top: 25px;
         padding-bottom: 25px;
     }
 
     /deep/ .heading-component {
-        margin-right: 25px;
+        margin-left: 25px;
     }
 </style>

@@ -18,7 +18,7 @@
     .heading-component {
         padding-top: 25px;
         padding-bottom: 25px;
-        @include fs(26)
+        @include fs(32)
         @include color($white)
         font-weight: 500;
         letter-spacing: .1em;
