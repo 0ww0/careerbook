@@ -25,8 +25,8 @@
 
     .hero {
         @include fs(16)
-        padding-top: 25px;
-        padding-bottom: 25px;
+        padding-top: 15px;
+        padding-bottom: 15px;
         @include color($white)
         letter-spacing: .15em;
         .bold {

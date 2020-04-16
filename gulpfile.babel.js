@@ -41,6 +41,10 @@ const paths =  {
         exSrc: '!src/assets/images/favicon/**/*',
         dest: 'build/assets/images/'
     },
+    videos: {
+        src: 'src/assets/video/**/*.mp4',
+        dest: 'build/assets/video/'
+    },
     favicons: {
         src: 'src/assets/images/favicon/**/*.+(ico|png)',
         dest: 'build/'
@@ -133,7 +137,10 @@ export const favicons = () => gulp.src( paths.favicons.src )
     .pipe(gulp.dest( paths.favicons.dest ))
 
 export const fonts = () => gulp.src( paths.fonts.src )
-     .pipe(gulp.dest( paths.fonts.dest ))
+    .pipe(gulp.dest( paths.fonts.dest ))
+
+export const videos = () => gulp.src( paths.videos.src )
+    .pipe(gulp.dest( paths.videos.dest ))
 
 export const devwatch = () => {
     gulp.watch( paths.styles.src, gulp.series(styles, reload) );
@@ -143,6 +150,7 @@ export const devwatch = () => {
     gulp.watch( paths.scripts.src, gulp.series(webpackStream, reload) );
     gulp.watch( paths.favicons.src, gulp.series(favicons, reload) );
     gulp.watch( paths.fonts.src, gulp.series(fonts, reload) );
+    gulp.watch( paths.videos.src, gulp.series(videos, reload) );
 }
 
 
@@ -153,11 +161,12 @@ exports.templates       = templates;
 exports.browser         = browser;
 exports.favicons        = favicons;
 exports.fonts           = fonts;
+exports.videos          = videos;
 exports.images          = images;
 exports.styles          = styles;
 exports.devwatch        = devwatch;
 
-const build = gulp.series(clean, templates, styles, favicons, fonts, images, webpackStream, gulp.parallel( devwatch, browser ));
+const build = gulp.series(clean, templates, styles, favicons, fonts, images, videos, webpackStream, gulp.parallel( devwatch, browser ));
 
 export default build;
 
