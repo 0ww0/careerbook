@@ -24,7 +24,7 @@
     }
 
     .hero {
-        @include fs(18)
+        @include fs(16)
         padding-top: 25px;
         padding-bottom: 25px;
         @include color($white)

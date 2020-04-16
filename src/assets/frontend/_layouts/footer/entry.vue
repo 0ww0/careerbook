@@ -19,6 +19,6 @@
 
     .copyright {
         text-align: center;
-        @include fs(12)
+        @include fs(10)
     }
 </style>
