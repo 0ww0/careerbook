@@ -3,18 +3,21 @@
         banner(:banner = 'banner')
         about(:about = 'about')
         core(:core = 'core')
+        job
 </template>
 
 <script>
     import banner from './components/_banner.vue'
     import about from './components/_about.vue'
     import core from './components/_core.vue'
+    import job from './components/_job.vue'
 
     export default {
         components : {
             banner,
             about,
-            core
+            core,
+            job
         },
 
         data() {
