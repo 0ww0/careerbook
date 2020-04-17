@@ -24,11 +24,11 @@
             return {
                 banner : {
                     heading : "Discover your next career move with Photobook Worldwide!",
-                    video : '../assets/video/1.mp4',
+                    video : '../assets/video/2.mp4',
                 },
                 core : {
                     heading : "At Photobook Worldwide, we uphold our core value principle.",
-                    video : '../assets/video/2.mp4',
+                    video : '../assets/video/1.mp4',
                 },
                 about: {
                     heading : "Get to know what Photobook Worldwide is all about",
