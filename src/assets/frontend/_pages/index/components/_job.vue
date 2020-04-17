@@ -5,19 +5,21 @@
                 span Join Photobook Worldwide team
             .filter-holder
                 .dropdown
-                    select(name = 'sort')
-                        option(selected, value = 'all') All
-                        option(value='Full-Time') Full Time
-                        option(value='intern') Intern
+                    select(name = 'sort', v-model = 'type_filter')
+                        option(disabled, value = '') Work Type
+                        option( value = 'All') All
+                        option(value='Full-Time') Full-Time
+                        option(value='Intern') Intern
                 .dropdown
-                    select(name = 'sort')
-                        option(selected, value = 'all') All
+                    select(name = 'sort', v-model = 'location_filter')
+                        option(disabled, value = '') Location
+                        option(value = 'All') All
                         option(value='Bangsar South, Malaysia') Bangsar South, Malaysia
                         option(value='Indonesia') Indonesia
                         option(value='The Columbia Tower, Mandaluyong City, Philippines') The Columbia Tower, Mandaluyong City, Philippines
             .content-holder
                 card(stretch, :xmedia = 'false')
-                    cardWrapper(:card = 'isResponsive', v-for = 'data in list', :key = 'data.id')
+                    cardWrapper(:card = 'isResponsive', v-for = 'data in selectArray()', :key = 'data.id')
                         joblist(:job = 'data')
 </template>
 
@@ -38,6 +40,9 @@
 
         data() {
             return {
+                filter: '',
+                type_filter : '',
+                location_filter : '',
                 list : [
                     {
                         id: 1,
@@ -125,8 +130,33 @@
                 } else {
                     return 'full'
                 }
+            },
+
+            typeArray() {
+                if(this.type_filter == '' || this.type_filter == 'All') return this.list
+                return this.list.filter(function(item) {
+                    return item.type === this.type_filter
+                }.bind(this))
+            },
+
+            locationArray() {
+                if(this.location_filter == '' || this.location_filter == 'All') return this.list
+                return this.list.filter(function(item) {
+                    return item.location === this.location_filter
+                }.bind(this))
+            },
+        },
+
+        methods : {
+            selectArray() {
+                if(this.type_filter) { return this.typeArray }
+                else if(this.location_filter) { return this.locationArray }
+                else {return this.list}
             }
         },
+        mounted() {
+            console.log(this.selectArray())
+        }
     }
 </script>
 
