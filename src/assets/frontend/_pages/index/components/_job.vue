@@ -154,9 +154,6 @@
                 else {return this.list}
             }
         },
-        mounted() {
-            console.log(this.selectArray())
-        }
     }
 </script>
 
