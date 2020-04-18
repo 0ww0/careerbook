@@ -19,7 +19,7 @@
                         option(value='The Columbia Tower, Mandaluyong City, Philippines') The Columbia Tower, Mandaluyong City, Philippines
             .content-holder
                 card(stretch, :xmedia = 'false')
-                    cardWrapper(:card = 'isResponsive', v-for = 'data in selectArray()', :key = 'data.id')
+                    cardWrapper(:card = 'isResponsive', v-for = 'data in listArray', :key = 'data.id')
                         joblist(:job = 'data')
 </template>
 
@@ -132,27 +132,28 @@
                 }
             },
 
-            typeArray() {
-                if(this.type_filter == '' || this.type_filter == 'All') return this.list
-                return this.list.filter(function(item) {
-                    return item.type === this.type_filter
-                }.bind(this))
+            listArray() {
+                let filterType = this.type_filter,
+                    filterLocation = this.location_filter
+                return this.list.filter(function(item){
+                    let filtered = true
+                    if(filterType && filterType.length > 0) {
+                        if(filterType == '' || filterType == 'All') {
+                            return filtered = item
+                        }
+                        filtered = item.type == filterType
+                    }
+                    if(filtered){
+                        if(filterLocation && filterLocation.length > 0) {
+                            if(filterLocation == '' || filterLocation == 'All') {
+                                return filtered = item
+                            }
+                            filtered = item.location == filterLocation
+                        }
+                    }
+                    return filtered
+                })
             },
-
-            locationArray() {
-                if(this.location_filter == '' || this.location_filter == 'All') return this.list
-                return this.list.filter(function(item) {
-                    return item.location === this.location_filter
-                }.bind(this))
-            },
-        },
-
-        methods : {
-            selectArray() {
-                if(this.type_filter) { return this.typeArray }
-                else if(this.location_filter) { return this.locationArray }
-                else {return this.list}
-            }
         },
     }
 </script>
