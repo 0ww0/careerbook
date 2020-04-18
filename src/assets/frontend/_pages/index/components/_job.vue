@@ -7,7 +7,6 @@
                 .dropdown
                     select(name = 'sort', v-model = 'type_filter')
                         option(disabled, value = '') Work Type
-                        option( value = 'All') All
                         option(value='Full-Time') Full-Time
                         option(value='Intern') Intern
                 .dropdown
@@ -17,10 +16,25 @@
                         option(value='Bangsar South, Malaysia') Bangsar South, Malaysia
                         option(value='Indonesia') Indonesia
                         option(value='The Columbia Tower, Mandaluyong City, Philippines') The Columbia Tower, Mandaluyong City, Philippines
+                .dropdown
+                    select(name = 'sort', v-model = 'category_filter')
+                        option(disabled, value = '') Category
+                        option(value = 'All') All
+                        option(value = 'Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing') Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing
+                        option(value = 'Marcomms + Creative (Campaign & Enterprise) – Brand & Campaign Management') Marcomms + Creative (Campaign & Enterprise) – Brand & Campaign Management
+                        option(value = 'Marcomms + Creative (Campaign & Enterprise) – Performance Marketing & App Marketing') Marcomms + Creative (Campaign & Enterprise) – Performance Marketing & App Marketing
+                        option(value = 'Marketing (Indonesia) – Digital Marketing Analyst') Marketing (Indonesia) – Digital Marketing Analyst
+                        option(value = 'Software Engineering (Philippines) – Software Engineering (Philippines)') Software Engineering (Philippines) – Software Engineering (Philippines)
+                        option(value = 'Customer Experience') Customer Experience
+                        option(value = 'ITSE') ITSE
+                        option(value = 'Product Tech') Product Tech
+                        option(value = 'Sales') Sales
             .content-holder
                 card(stretch, :xmedia = 'false')
                     cardWrapper(:card = 'isResponsive', v-for = 'data in listArray', :key = 'data.id')
                         joblist(:job = 'data')
+                    .no-listing(v-if = 'listArray.length === 0')
+                        p No available job posting
 </template>
 
 <script>
@@ -43,6 +57,7 @@
                 filter: '',
                 type_filter : '',
                 location_filter : '',
+                category_filter : '',
                 list : [
                     {
                         id: 1,
@@ -134,13 +149,11 @@
 
             listArray() {
                 let filterType = this.type_filter,
-                    filterLocation = this.location_filter
+                    filterLocation = this.location_filter,
+                    filterCategory = this.category_filter
                 return this.list.filter(function(item){
                     let filtered = true
                     if(filterType && filterType.length > 0) {
-                        if(filterType == '' || filterType == 'All') {
-                            return filtered = item
-                        }
                         filtered = item.type == filterType
                     }
                     if(filtered){
@@ -149,6 +162,14 @@
                                 return filtered = item
                             }
                             filtered = item.location == filterLocation
+                        }
+                    }
+                    if(filtered){
+                        if(filterCategory && filterCategory.length > 0) {
+                            if(filterCategory == '' || filterCategory == 'All') {
+                                return filtered = item
+                            }
+                            filtered = item.category == filterCategory
                         }
                     }
                     return filtered
@@ -178,5 +199,24 @@
         flex-flow: row nowrap;
         align-items: flex-end;
         justify-content: flex-end;
+    }
+
+    .dropdown {
+        width: 200px;
+        &:not(:last-child){
+            margin-right: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 5px 15px;
+        }
+    }
+
+    .no-listing {
+        display: block;
+        @include fs(20)
+        @include weight(500)
+        margin-top: 105px;
+        margin-bottom: 105px;
     }
 </style>
