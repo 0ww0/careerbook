@@ -136,10 +136,7 @@
                         title: 'Affiliate Marketing Manager',
                         location: 'Bangsar South, Malaysia',
                         category: 'Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing',
-                        type: 'Full-Time',
-                        modal: {
-
-                        }
+                        type: 'Full-Time'
                     },
 
                     {
@@ -311,6 +308,6 @@
     }
 
     /deep/ .modal {
-        max-width: 600px;
+        max-width: 640px;
     }
 </style>
