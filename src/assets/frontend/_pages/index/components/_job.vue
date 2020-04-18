@@ -7,34 +7,23 @@
                 .dropdown
                     select(name = 'sort', v-model = 'type_filter')
                         option(disabled, value = '') Work Type
-                        option(value='Full-Time') Full-Time
-                        option(value='Intern') Intern
+                        option(v-for = 'data in type', :value='data.title') {{ data.title }}
                 .dropdown
                     select(name = 'sort', v-model = 'location_filter')
                         option(disabled, value = '') Location
-                        option(value = 'All') All
-                        option(value='Bangsar South, Malaysia') Bangsar South, Malaysia
-                        option(value='Indonesia') Indonesia
-                        option(value='The Columbia Tower, Mandaluyong City, Philippines') The Columbia Tower, Mandaluyong City, Philippines
+                        option(v-for = 'data in location', :value='data.title') {{ data.title }}
                 .dropdown
                     select(name = 'sort', v-model = 'category_filter')
                         option(disabled, value = '') Category
-                        option(value = 'All') All
-                        option(value = 'Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing') Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing
-                        option(value = 'Marcomms + Creative (Campaign & Enterprise) – Brand & Campaign Management') Marcomms + Creative (Campaign & Enterprise) – Brand & Campaign Management
-                        option(value = 'Marcomms + Creative (Campaign & Enterprise) – Performance Marketing & App Marketing') Marcomms + Creative (Campaign & Enterprise) – Performance Marketing & App Marketing
-                        option(value = 'Marketing (Indonesia) – Digital Marketing Analyst') Marketing (Indonesia) – Digital Marketing Analyst
-                        option(value = 'Software Engineering (Philippines) – Software Engineering (Philippines)') Software Engineering (Philippines) – Software Engineering (Philippines)
-                        option(value = 'Customer Experience') Customer Experience
-                        option(value = 'ITSE') ITSE
-                        option(value = 'Product Tech') Product Tech
-                        option(value = 'Sales') Sales
+                        option(v-for = 'data in category', :value='data.title') {{ data.title }}
             .content-holder
                 card(stretch, :xmedia = 'false')
                     cardWrapper(:card = 'isResponsive', v-for = 'data in listArray', :key = 'data.id')
-                        joblist(:job = 'data')
+                        joblist(:job = 'data', @open = "showModal('listing', data)")
                     .no-listing(v-if = 'listArray.length === 0')
                         p No available job posting
+            modal(ref='listing', overlayTheme = 'dark', blocking, @close = 'clearListing')
+                joblisting(:listing = 'listing')
 </template>
 
 <script>
@@ -42,6 +31,8 @@
     import card from './../../../_components/card/_card.vue'
     import cardWrapper from './../../../_components/card/_wrapper.vue'
     import joblist from './../../../_components/post/_list.vue'
+    import modal from './../../../_components/modal/_modal.vue'
+    import joblisting from './../../../_components/post/_listing.vue'
 
     export default {
         extends : Media,
@@ -49,22 +40,106 @@
         components : {
             card,
             cardWrapper,
-            joblist
+            joblist,
+            modal,
+            joblisting
         },
 
         data() {
             return {
-                filter: '',
                 type_filter : '',
                 location_filter : '',
                 category_filter : '',
+                listing: {},
+                type: [
+                    {
+                        id: 1,
+                        title : 'Full-Time'
+                    },
+                    {
+                        id: 2,
+                        title : 'Intern'
+                    }
+                ],
+                location : [
+                    {
+                        id: 1,
+                        title : 'All'
+                    },
+                    {
+                        id: 2,
+                        title : 'Bangsar South, Malaysia'
+                    },
+
+                    {
+                        id: 3,
+                        title : 'Indonesia'
+                    },
+
+                    {
+                        id: 4,
+                        title : 'The Columbia Tower, Mandaluyong City, Philippines'
+                    }
+                ],
+                category : [
+                    {
+                        id: 1,
+                        title : 'All'
+                    },
+                    {
+                        id: 2,
+                        title : 'Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing'
+                    },
+
+                    {
+                        id: 3,
+                        title : 'Marcomms + Creative (Campaign & Enterprise) – Brand & Campaign Management'
+                    },
+
+                    {
+                        id: 4,
+                        title : 'Marcomms + Creative (Campaign & Enterprise) – Performance Marketing & App Marketing'
+                    },
+
+                    {
+                        id: 5,
+                        title : 'Marketing (Indonesia) – Digital Marketing Analyst'
+                    },
+                    {
+                        id: 6,
+                        title : 'Software Engineering (Philippines) – Software Engineering (Philippines)'
+                    },
+
+                    {
+                        id: 7,
+                        title : 'Customer Experience'
+                    },
+
+                    {
+                        id: 8,
+                        title : 'ITSE'
+                    },
+
+                    {
+                        id: 9,
+                        title : 'Product Tech'
+                    },
+
+                    {
+                        id: 10,
+                        title : 'Sales'
+                    }
+                ],
                 list : [
                     {
                         id: 1,
                         title: 'Affiliate Marketing Manager',
                         location: 'Bangsar South, Malaysia',
                         category: 'Marcomms + Creative (Campaign & Enterprise) – Affiliate Marketing',
-                        type: 'Full-Time'
+                        type: 'Full-Time',
+                        modal: {
+
+                        }
                     },
 
                     {
@@ -176,6 +251,21 @@
                 })
             },
         },
+
+        methods : {
+            showModal(ref, data) {
+                if (this.$refs[ref]) {
+                    this.$refs[ref].open()
+                    this.listing = data
+                } else {
+                    throw new Error('Ref not defined: ' + ref)
+                }
+            },
+
+            clearListing() {
+                this.listing = {}
+            }
+        }
     }
 </script>
 
@@ -218,5 +308,9 @@
         @include weight(500)
         margin-top: 105px;
         margin-bottom: 105px;
+    }
+
+    /deep/ .modal {
+        max-width: 600px;
     }
 </style>

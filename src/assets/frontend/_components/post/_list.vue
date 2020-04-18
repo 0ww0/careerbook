@@ -1,5 +1,5 @@
 <template lang="pug">
-    .list-component
+    .list-component(@click = 'open')
         .title
             span {{ job.title }}
         .location
@@ -15,6 +15,12 @@
     export default {
         props : {
             job : Object
+        },
+
+        methods : {
+            open() {
+                this.$emit('open')
+            }
         }
     }
 </script>
@@ -27,6 +33,12 @@
         border-radius: 10px;
         @include border(#ddd)
         height: 100%;
+        box-shadow: none;
+        cursor: pointer;
+        &:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            @include trans-prop(box-shadow)
+        }
 
         display: flex;
         flex-direction: column;
