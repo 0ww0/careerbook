@@ -16,8 +16,6 @@
     @import '../../style/config.scss';
 
     .heading-component {
-        padding-top: 25px;
-        padding-bottom: 25px;
         @include fs(32)
         @include color($white)
         font-weight: 500;

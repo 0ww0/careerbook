@@ -54,6 +54,10 @@
     }
 
     /deep/ .heading-component {
-        margin-left: 25px;
+        @include media(dp-up) {
+            padding-top: 25px;
+            padding-bottom: 25px;
+            margin-left: 25px;
+        }
     }
 </style>
