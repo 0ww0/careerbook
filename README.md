@@ -1,4 +1,4 @@
-# Careerbook Front End Assignment
+# Careerbook - Photobook Worldwide Front End Assignment
 
 Front End Web Development using Vuejs
 
