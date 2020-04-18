@@ -170,4 +170,4 @@ const build = gulp.series(clean, templates, styles, favicons, fonts, images, vid
 
 export default build;
 
-export const prod = gulp.series(clean, templates, styles, favicons, fonts, webpackProd);
+export const prod = gulp.series(clean, templates, styles, favicons, fonts, images, videos, webpackProd);
