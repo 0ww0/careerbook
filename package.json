@@ -1,7 +1,7 @@
 {
-  "name": "focus-dynamics",
+  "name": "careerbook",
   "version": "1.1.2",
-  "description": "Focus Dynamics",
+  "description": "Careerbook",
   "main": "gulpfile.babel.js",
   "scripts": {
     "serve": "webpack-dev-server --mode=development",
@@ -37,7 +37,7 @@
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
-    "style-loader": "^1.1.3",
+    "style-loader": "^1.1.4",
     "vue-hot-reload-api": "^2.3.4",
     "vue-html-loader": "^1.2.4",
     "vue-loader": "^15.9.0",
