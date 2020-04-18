@@ -12,10 +12,8 @@ Front End Web Development using Vuejs
 | CSS Preprocessor | SCSS | Differ
 | Javascript Framework | Vuejs & Jquery |
 | Icon Framework | Frontawesome Free |
-| Custom Icon | Icomoon(Custom Design) |
 
 * Differ - Each gulp and webpack use different version
-* **Bootstap and other CSS Framework not permitted to use**
 
 ### Getting Started
 
@@ -48,9 +46,3 @@ When serve. Gulp will delete the folder/file first and create a new one.
  - Will global components can be accessible by all pages.
  - Compile .pug inside .vuejs file.
  - Compile .scss inside .vuejs file.
-
-### Github
-- All Task, Branch, Comment need to be legible.
-- Every task need to open a new issue.
-- Create a new branch based on the issue.
-- Each branch need to be approve before merging.

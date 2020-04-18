@@ -46,6 +46,8 @@
 </script>
 
 <style lang="scss" scoped>
+    @import './../../../style/config.scss';
+    
     .core-holder {
         background: rgb(34,193,195);
         background: linear-gradient(180deg, rgba(34,193,195,1) 0%, rgba(68,129,173,1) 100%);
