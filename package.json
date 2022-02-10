@@ -32,7 +32,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.0.2",
     "html-loader": "^0.5.5",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "postcss-loader": "^3.0.0",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
